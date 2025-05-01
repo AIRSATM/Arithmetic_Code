@@ -3,7 +3,7 @@ import time
 from collections import defaultdict
 import math
 
-# Helper functions for varint encoding/decoding (same as before)
+
 def write_varint(f, number):
     """Запись числа в формате varint."""
     while number > 0x7F:
@@ -43,13 +43,13 @@ def calculate_frequency(file_path):
     return dict(frequency)  # Ensure it's a regular dict
 
 def encode_file(input_file, output_file):
-    """Кодирование файла с использованием арифметического кодирования (целочисленная арифметика)."""
+    """Кодирование файла (целочисленная арифметика)"""
     start_time = time.time()
     print("--- Начало кодирования ---")    
     # 1. Calculate Frequencies
     frequency = calculate_frequency(input_file)
     if not frequency:
-        print("Ошибка: Не удалось рассчитать частоты.")
+        print("Не удалось рассчитать частоты.")
         return
 
     total_symbols = sum(frequency.values())
@@ -217,7 +217,7 @@ def encode_file(input_file, output_file):
 
 
 def decode_file(encoded_file, output_file):
-    """Исправленный декодер арифметического кода."""
+    
     start_time = time.time()
     
     with open(encoded_file, 'rb') as f:
@@ -362,7 +362,7 @@ def main():
                 if f1.read() == f2.read():
                     print("файлы совпадают.")
                 else:
-                    print("файлы н совпадают после декодирования.")
+                    print("файлы не совпадают после декодирования.")
         except Exception as e:
             print(f"Ошибка при сравнении файлов: {e}")
     else:
